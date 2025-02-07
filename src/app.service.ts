@@ -1,8 +1,10 @@
 import { Injectable } from '@nestjs/common';
+import { Request } from 'express';
 
 @Injectable()
 export class AppService {
-  getHello(): string {
-    return 'Hello World! You are not logged in.';
+  getHello(req: Request): string {
+    let user = req.session.user;
+    return user ? `Hello ${user.personaname}, ${user.steamid}!` : `Not authenticated`;
   }
 }
