@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/prisma.service';
+import { PrismaService } from 'src/prisma/services/prisma.service';
 import { xVip_logs, xVip_vips } from '@prisma/client';
 
 @Injectable()

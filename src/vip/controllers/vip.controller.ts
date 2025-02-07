@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Patch, Post } from '@nestjs/common';
-import { VipService } from './vip.service';
+import { VipService } from '../services/vip.service';
 import { xVip_logs, xVip_vips } from '@prisma/client';
 
 @Controller('vip')

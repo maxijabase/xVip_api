@@ -1,12 +1,12 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { VipController } from './vip/vip.controller';
-import { VipService } from './vip/vip.service';
-import { PrismaService } from './prisma.service';
-import { AuthModule } from './auth/auth.module';
-import { AuthMiddleware } from './auth/auth.middleware';
-import { SteamBotService } from './steam-bot/steam-bot.service';
+import { VipController } from './vip/controllers/vip.controller';
+import { VipService } from './vip/services/vip.service';
+import { PrismaService } from './prisma/services/prisma.service';
+import { AuthModule } from './auth/modules/auth.module';
+import { AuthMiddleware } from './auth/middleware/auth.middleware';
+import { SteamBotService } from './steam-bot/services/steam-bot.service';
 
 @Module({
   imports: [AuthModule],

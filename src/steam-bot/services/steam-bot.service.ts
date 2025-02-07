@@ -22,6 +22,7 @@ export class SteamBotService implements OnModuleInit, OnModuleDestroy {
   }
 
   onModuleInit() {
+    return;
     this.steamUser.logOn({
       accountName: process.env.STEAM_BOT_USERNAME ?? '',
       password: process.env.STEAM_BOT_PASSWORD ?? '',
