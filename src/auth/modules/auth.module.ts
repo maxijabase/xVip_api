@@ -4,11 +4,17 @@ import { SteamStrategy } from '../strategies/steam.strategy';
 import { AuthController } from '../controllers/auth.controller';
 import { PrismaService } from 'src/prisma/services/prisma.service';
 import { AuthService } from '../services/auth.service';
+import { JwtModule, JwtService } from '@nestjs/jwt';
+import { JwtStrategy } from '../strategies/jwt.strategy';
 
 @Module({
-  imports: [PassportModule],
-  providers: [SteamStrategy, PrismaService, AuthService],
+  imports: [PassportModule,
+    JwtModule.register({
+      secret: process.env.JWT_SECRET,
+      signOptions: { expiresIn: '72h' },
+    })
+  ],
+  providers: [SteamStrategy, PrismaService, AuthService, JwtService, JwtStrategy],
   controllers: [AuthController],
-  exports: [AuthService],
 })
 export class AuthModule {}

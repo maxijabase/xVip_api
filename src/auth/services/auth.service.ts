@@ -1,15 +1,15 @@
 import { Injectable } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 import { WebUser } from '../models/webUser';
 
 @Injectable()
 export class AuthService {
-  private webUser: WebUser
+  constructor(private jwtService: JwtService) {}
 
-  setSteamUser(user: any) {
-    this.webUser = user;
-  }
-
-  getSteamUser() {
-    return this.webUser;
+  async getToken(user: WebUser) {
+    return this.jwtService.sign(user, {
+      privateKey: process.env.JWT_SECRET,
+      expiresIn: '72h',
+    });
   }
 }
