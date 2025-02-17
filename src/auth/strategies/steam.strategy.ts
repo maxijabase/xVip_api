@@ -11,7 +11,7 @@ export class SteamStrategy extends PassportStrategy(Strategy) {
     super({
       returnURL: 'http://localhost:3000/auth/steam/return',
       realm: 'http://localhost:3000/',
-      apiKey: process.env.STEAM_API_KEY // Get this from Steam Dev Portal
+      apiKey: process.env.STEAM_API_KEY
     });
   }
 

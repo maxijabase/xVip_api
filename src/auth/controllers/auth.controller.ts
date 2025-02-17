@@ -28,14 +28,21 @@ export class AuthController {
 
     const token = await this.authService.getToken(user);
 
-    return res.redirect(
-      `${process.env.APP_URL}/auth/return?token=${token}`,
-    );
+    return res.redirect(`${process.env.APP_URL}/auth/return?token=${token}`);
+  }
+
+  @Get('verifyToken')
+  async verifyToken(@Req() req: Request) {
+    const token = req.query.token as string;
+    if (!token) {
+      throw new HttpException('token is required', 400);
+    }
+    return await this.authService.verifyToken(token);
   }
 
   @Get('logout')
   logout(@Req() req: Request, @Res() res: Response) {
-    req.session.user = null;
+    req.session.user = null; 
     res.redirect('/');
   }
 
