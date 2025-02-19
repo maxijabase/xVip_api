@@ -16,9 +16,9 @@ export class AuthController {
 
   @Get('login')
   @UseGuards(AuthGuard('steam'))
-  steamAuth() {}
+  steamAuth(@Req() req: Request) {}
 
-  @Get('steam/return')
+  @Get('return')
   @UseGuards(AuthGuard('steam'))
   async steamAuthCallback(@Req() req: Request, @Res() res: Response) {
     const user = req.user;
@@ -27,7 +27,6 @@ export class AuthController {
     }
 
     const token = await this.authService.getToken(user);
-
     return res.redirect(`${process.env.APP_URL}/auth/return?token=${token}`);
   }
 
@@ -41,15 +40,7 @@ export class AuthController {
   }
 
   @Get('logout')
-  logout(@Req() req: Request, @Res() res: Response) {
-    req.session.user = null; 
+  logout(@Res() res: Response) {
     res.redirect('/');
-  }
-
-  @Get('user')
-  getUser(@Req() req: Request) {
-    return {
-      user: req.session.user,
-    };
   }
 }

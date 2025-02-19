@@ -1,7 +1,10 @@
-import { Body, Controller, Delete, Get, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Patch, Post, UseGuards } from '@nestjs/common';
 import { VipService } from '../services/vip.service';
 import { xVip_logs, xVip_vips } from '@prisma/client';
+import { RolesGuard } from 'src/auth/guards/roles.guard';
+import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 
+// @UseGuards(JwtAuthGuard, RolesGuard)
 @Controller('vip')
 export class VipController {
   constructor(private readonly vipService: VipService) {}

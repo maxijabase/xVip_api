@@ -9,7 +9,7 @@ export class SteamStrategy extends PassportStrategy(Strategy) {
     private prisma: PrismaService,
   ) {
     super({
-      returnURL: 'http://localhost:3000/auth/steam/return',
+      returnURL: 'http://localhost:3000/auth/return',
       realm: 'http://localhost:3000/',
       apiKey: process.env.STEAM_API_KEY
     });

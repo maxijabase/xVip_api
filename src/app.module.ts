@@ -13,10 +13,4 @@ import { VipModule } from './vip/modules/vip.module';
   controllers: [AppController, VipController],
   providers: [AppService, VipService, PrismaService, SteamBotService],
 })
-export class AppModule /* implements NestModule */ {
-  // configure(consumer: MiddlewareConsumer) {
-  //   consumer
-  //     .apply(AuthMiddleware)
-  //     .forRoutes(VipController); // Apply middleware to specific routes
-  // }
-}
+export class AppModule {}
