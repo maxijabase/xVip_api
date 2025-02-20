@@ -26,7 +26,9 @@ export class SteamBotService implements OnModuleInit, OnModuleDestroy {
     this.steamUser.logOn({
       accountName: process.env.STEAM_BOT_USERNAME ?? '',
       password: process.env.STEAM_BOT_PASSWORD ?? '',
-      twoFactorCode: SteamTotp.generateAuthCode(process.env.STEAM_BOT_SHARED_SECRET ?? ''),
+      twoFactorCode: SteamTotp.generateAuthCode(
+        process.env.STEAM_BOT_SHARED_SECRET ?? '',
+      ),
     });
 
     this.steamUser.on('loggedOn', () => {
@@ -43,7 +45,10 @@ export class SteamBotService implements OnModuleInit, OnModuleDestroy {
     this.steamUser.on('webSession', (sessionID, cookies) => {
       this.tradeManager.setCookies(cookies);
       this.community.setCookies(cookies);
-      this.community.startConfirmationChecker(5000, process.env.STEAM_BOT_IDENTITY_SECRET ?? '');
+      this.community.startConfirmationChecker(
+        5000,
+        process.env.STEAM_BOT_IDENTITY_SECRET ?? '',
+      );
     });
 
     this.steamUser.on('error', (err) => {
@@ -56,7 +61,7 @@ export class SteamBotService implements OnModuleInit, OnModuleDestroy {
         console.log('Accepted friend request from', steamID);
         this.steamUser.chat.sendFriendMessage(
           steamID,
-          'Hello! I am ampere\'s bot. I am currently under development.',
+          "Hello! I am ampere's bot. I am currently under development.",
         );
       }
     });

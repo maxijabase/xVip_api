@@ -10,6 +10,6 @@ import { JwtService } from '@nestjs/jwt';
   imports: [AuthModule],
   providers: [AuthService, VipService, PrismaService, JwtService],
   controllers: [VipController],
-  exports: []
+  exports: [],
 })
 export class VipModule {}
