@@ -6,7 +6,7 @@ import { Roles } from './auth/decorators/roles.decorator';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor() {}
 
   @Get('auth-test')
   @UseGuards(JwtAuthGuard, RolesGuard)
