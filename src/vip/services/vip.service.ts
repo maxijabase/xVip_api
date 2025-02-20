@@ -11,7 +11,11 @@ export class VipService {
   }
 
   async getLogs(): Promise<xVip_logs[]> {
-    return this.prisma.xVip_logs.findMany();
+    return this.prisma.xVip_logs.findMany({
+      orderBy: {
+        timestamp: 'desc',
+      },
+    });
   }
 
   async createVip(vip: xVip_vips): Promise<xVip_vips> {
