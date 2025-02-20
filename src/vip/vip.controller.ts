@@ -7,7 +7,7 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { VipService } from '../services/vip.service';
+import { VipService } from './vip.service';
 import { xVip_logs, xVip_vips } from '@prisma/client';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
@@ -19,21 +19,21 @@ export class VipController {
 
   @Get()
   async getVipList(): Promise<xVip_vips[]> {
-    return this.vipService.getVipList();
+    return await this.vipService.getVipList();
   }
 
   @Get('logs')
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('admin', 'owner')
   async getLogs(): Promise<xVip_logs[]> {
-    return this.vipService.getLogs();
+    return await this.vipService.getLogs();
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('admin', 'owner')
   @Post()
   async createVip(@Body() vipData: xVip_vips): Promise<xVip_vips> {
-    return this.vipService.createVip(vipData);
+    return await this.vipService.createVip(vipData);
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
@@ -41,7 +41,7 @@ export class VipController {
   @Post()
   @Post('logs')
   async createLog(@Body() logData: xVip_logs): Promise<xVip_logs> {
-    return this.vipService.createLog(logData);
+    return await this.vipService.createLog(logData);
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
@@ -49,7 +49,7 @@ export class VipController {
   @Post()
   @Patch()
   async updateVip(@Body() vipData: xVip_vips): Promise<xVip_vips> {
-    return this.vipService.updateVip(vipData);
+    return await this.vipService.updateVip(vipData);
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
@@ -57,6 +57,6 @@ export class VipController {
   @Post()
   @Delete()
   async deleteVip(@Body() vipData: xVip_vips): Promise<xVip_vips> {
-    return this.vipService.deleteVip(vipData);
+    return await this.vipService.deleteVip(vipData);
   }
 }
